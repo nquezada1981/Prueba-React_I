@@ -4,3 +4,4 @@ La siguiente es una aplicación que consume la API RAWG, que permite explorar un
 
 - Para usar, primero debe ejecutar el comando > **npm install**
 - Para correr el servidor, ejecute el comando > **npm run dev**
+- Video: **>https://youtu.be/QfS0gdjBSYo**

@@ -7,6 +7,7 @@ const MiApi = ({ palabra }) => {
     const [game, setGame] = useState([]);
     const [next, setNext] = useState();
     const [prev, setPrev] = useState(null);
+
     useEffect(() => {
         personajes();
     }, []);
@@ -39,6 +40,7 @@ const MiApi = ({ palabra }) => {
         setPrev(data.previous)
 
     }
+
     let resultado = '';
     if (!palabra) {
         resultado = game;
