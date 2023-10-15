@@ -67,7 +67,7 @@ const MiApi = ({ palabra }) => {
 
 
             </div>
-            <div className="row text-center row-cols-1 row-cols-md-2 row-cols-xl-2 g-4">
+            <div className="row text-center row-cols-1 row-cols-md-2 row-cols-xl-2 g-4 mb-3 pb-3">
                 <div className="col">
                     {
                         prev && < button onClick={atras} type="button" className="btn btn-primary g-3">Atras</button>
