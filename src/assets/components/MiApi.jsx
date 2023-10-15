@@ -2,53 +2,41 @@ import { useState } from "react";
 import { useEffect } from "react"
 
 
-const MiApi = ({ mostrar, setMostrar, palabra, setPalabras }) => {
+const MiApi = ({ palabra }) => {
 
     const [game, setGame] = useState([]);
-    const [contador, setContador] = useState();
+    const [next, setNext] = useState();
+    const [prev, setPrev] = useState(null);
     useEffect(() => {
         personajes();
     }, []);
 
     const personajes = async () => {
-        setContador(2)
+        //setContador(2)
         const url = "https://api.rawg.io/api/games?key=53cdb1164b1f439ea262ce6365b3936e&dates=2019-09-01,2023-10-14&platforms=18,1,7";
         const res = await fetch(url);
         const data = await res.json();
-        setGame(data.results)
-        console.log("El contador esta en " + contador);
-
+        setNext(data.next);
+        setPrev(data.previous)
+        setGame(data.results);
     }
 
     const siguiente = async () => {
-        setContador(contador + 1)
-        console.log("El contador esta en " + contador);
-        setMostrar(true)
-        const url = `https://api.rawg.io/api/games?dates=2019-09-01%2C2023-10-14&key=53cdb1164b1f439ea262ce6365b3936e&page=${contador}&platforms=18%2C1%2C7`;
-        const res2 = await fetch(url);
-        const data2 = await res2.json();
-        setGame(data2.results)
-        console.log(url);
-        console.log("El contador despues esta en " + contador);
+        const url = next;
+        const res = await fetch(url);
+        const data = await res.json();
+        setNext(data.next);
+        setGame(data.results)
+        setPrev(data.previous)
     }
 
     const atras = async () => {
-        setContador(contador - 1)
-        console.log("El contador esta en " + contador);
-        if (contador > 2) {
-            setMostrar(true)
-            const url = `https://api.rawg.io/api/games?dates=2019-09-01%2C2023-10-14&key=53cdb1164b1f439ea262ce6365b3936e&page=${contador - 1}&platforms=18%2C1%2C7`;
-            const res = await fetch(url);
-            const data = await res.json();
-            setGame(data.results)
-            console.log(url);
-            console.log(contador);
-        } else {
-            setContador(contador - 1)
-            setMostrar(false)
-            personajes()
-        }
-
+        const url = prev;
+        const res = await fetch(url);
+        const data = await res.json();
+        setNext(data.next)
+        setGame(data.results)
+        setPrev(data.previous)
 
     }
     let resultado = '';
@@ -64,8 +52,6 @@ const MiApi = ({ mostrar, setMostrar, palabra, setPalabras }) => {
         <>
             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-3 pb-3" >
                 {
-
-
                     resultado && resultado.length > 0 ? resultado?.map(juego => (
 
                         <div key={juego.id} className="col">
@@ -84,7 +70,7 @@ const MiApi = ({ mostrar, setMostrar, palabra, setPalabras }) => {
             <div className="row text-center row-cols-1 row-cols-md-2 row-cols-xl-2 g-4">
                 <div className="col">
                     {
-                        mostrar && < button onClick={atras} type="button" className="btn btn-primary g-3">Atras</button>
+                        prev && < button onClick={atras} type="button" className="btn btn-primary g-3">Atras</button>
                     }
                 </div>
                 <div className="col">

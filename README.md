@@ -1,8 +1,6 @@
-# React + Vite
+### Desafio 4 - Consumo de APIs con React
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+La siguiente es una aplicación que consume la API RAWG, que permite explorar una base de datos de video juegos. 
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Para usar, primero debe ejecutar el comando > **npm install**
+- Para correr el servidor, ejecute el comando > **npm run dev**
